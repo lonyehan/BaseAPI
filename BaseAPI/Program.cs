@@ -7,6 +7,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Response Compression
+builder.Services.AddResponseCompression(option =>
+{    
+    // Configuration For Compressionn
+    // option.EnableForHttps = true;
+}
+    );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +28,8 @@ else
     app.UseHttpsRedirection();
     app.UseHsts();
 }
+
+app.UseResponseCompression();
 
 app.UseAuthorization();
 
